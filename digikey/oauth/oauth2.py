@@ -205,7 +205,7 @@ class TokenHandler:
             error_message = r.json().get('error_description', None)
             r.raise_for_status()
         except (requests.exceptions.RequestException, requests.exceptions.HTTPError) as e:
-            logger.error("CUSTOM - Cannot request new token with refresh token: {}.".format(error_message))
+            logger.error("CUSTOM - Cannot request new token with refresh token: {}.".format(e))
             raise DigikeyOauthException('REFRESH - Cannot request new token with refresh token: {}.'.format(error_message))
         else:
             token_json = r.json()
